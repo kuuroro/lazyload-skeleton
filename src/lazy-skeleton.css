@@ -1,0 +1,141 @@
+.img {
+
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            width: 200px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        .ylazy {
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            width: 200px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        .ylazy.yskeleton {}
+
+        .ylazy.loaded {
+            background: none;
+            animation: none;
+        }
+
+
+        @keyframes loading {
+            0% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+
+
+
+
+        .yskeleton {
+            overflow: hidden;
+            /* border: 1px solid #f2f2f2 */
+        }
+
+        .yskeleton.card {
+            /* overflow: hidden; */
+            /* min-width: 200px; */
+            width: 140px;
+            display: inline-block;
+        }
+
+        .yskeleton.user-card {
+            width: 140px;
+            display: inline-block;
+
+        }
+
+
+        .yskeleton-line.user {
+            margin: 15px 0;
+            max-width: 80%;
+        }
+
+        .yskeleton-cover {
+            width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+        }
+
+        .yskeleton.card .yskeleton-cover,
+        .yskeleton.user-card .yskeleton-cover {
+            flex-direction: column;
+        }
+
+
+
+        .yskeleton-user {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            border-radius: 50%;
+            margin-right: 10px;
+            /* flex: 1; */
+        }
+
+        .yskeleton.user-card .yskeleton-user {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            margin: 10px auto 20px;
+        }
+
+        .yskeleton-line-wrap {
+            /* overflow: hidden; */
+            flex: 1
+        }
+
+        .yskeleton-line {
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .yskeleton-line.small {
+            height: 14px;
+            margin: 5px 0
+        }
+
+        .yskeleton-card {
+            width: 100%;
+            padding-bottom: 100%;
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            margin: 0 auto 10px;
+        }
+
+
+        .yskeleton .content {
+            display: none;
+        }
+
+        .yskeleton.loaded .content {
+            display: block;
+        }
+
+        .yskeleton .yskeleton-cover {
+            display: flex;
+        }
+
+        .yskeleton.loaded .yskeleton-cover {
+            display: none;
+        }

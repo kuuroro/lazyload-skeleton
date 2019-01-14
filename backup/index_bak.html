@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Lazy-Load</title>
+    <style>
+        .img {
+
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            width: 200px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        .ylazy {
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            width: 200px;
+            height: 100px;
+            display: inline-block;
+        }
+
+        .ylazy.yskeleton {}
+
+        .ylazy.loaded {
+            background: none;
+            animation: none;
+        }
+
+
+        @keyframes loading {
+            0% {
+                background-position: 100% 50%;
+            }
+
+            100% {
+                background-position: 0 50%;
+            }
+        }
+
+
+
+
+
+        .yskeleton {
+            overflow: hidden;
+            /* border: 1px solid #f2f2f2 */
+        }
+
+        .yskeleton.card {
+            /* overflow: hidden; */
+            /* min-width: 200px; */
+            width: 140px;
+            display: inline-block;
+        }
+
+        .yskeleton.user-card {
+            width: 140px;
+            display: inline-block;
+
+        }
+
+
+        .yskeleton-line.user {
+            margin: 15px 0;
+            max-width: 80%;
+        }
+
+        .yskeleton-cover {
+            width: 100%;
+            overflow: hidden;
+            box-sizing: border-box;
+            padding: 10px;
+            display: flex;
+        }
+
+        .yskeleton.card .yskeleton-cover,
+        .yskeleton.user-card .yskeleton-cover {
+            flex-direction: column;
+        }
+
+
+
+        .yskeleton-user {
+            width: 50px;
+            height: 50px;
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            border-radius: 50%;
+            margin-right: 10px;
+            /* flex: 1; */
+        }
+
+        .yskeleton.user-card .yskeleton-user {
+            margin: 0 auto;
+            width: 100px;
+            height: 100px;
+            margin: 10px auto 20px;
+        }
+
+        .yskeleton-line-wrap {
+            /* overflow: hidden; */
+            flex: 1
+        }
+
+        .yskeleton-line {
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            height: 20px;
+            margin: 10px 0;
+        }
+
+        .yskeleton-line.small {
+            height: 14px;
+            margin: 5px 0
+        }
+
+        .yskeleton-card {
+            width: 100%;
+            padding-bottom: 100%;
+            background: linear-gradient(90deg, #f2f2f2 25%, #e6e6e6 37%, #f2f2f2 63%);
+            animation: loading 1.4s ease infinite;
+            background-size: 400% 100%;
+            margin: 0 auto 10px;
+        }
+
+
+        .yskeleton .content {
+            display: none;
+        }
+
+        .yskeleton.loaded .content {
+            display: block;
+        }
+
+        .yskeleton .yskeleton-cover {
+            display: flex;
+        }
+
+        .yskeleton.loaded .yskeleton-cover {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <!-- <div class="img" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg" >
+        </div> -->
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+    </div>
+
+    <div class="yskeleton" row="5">
+        <div class="content">
+            <p>XSS（Cross-Site Scripting）又称跨站脚本，XSS的重点不在于跨站点，而是在于脚本的执行。XSS是一种经常出现在 Web 应用程序中的计算机安全漏洞，是由于 Web
+                应用程序对用户的输入过滤不足而产生的。</p>
+        </div>
+        <!-- <div class="yskeleton-cover">
+            <div class="yskeleton-line-wrap">
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="yskeleton user" row="5">
+        <div class="content">
+            <p>XSS（Cross-Site Scripting）又称跨站脚本，XSS的重点不在于跨站点，而是在于脚本的执行。XSS是一种经常出现在 Web 应用程序中的计算机安全漏洞，是由于 Web
+                应用程序对用户的输入过滤不足而产生的。</p>
+        </div>
+        <!-- <div class="yskeleton-cover">
+            <div class="yskeleton-user">
+            </div>
+            <div class="yskeleton-line-wrap">
+                <div class="yskeleton-line user"></div>
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+                <div class="yskeleton-line"></div>
+            </div>
+        </div> -->
+    </div>
+
+
+    <div class="yskeleton card" row="5">
+        <div class="content">
+            <p>XSS（Cross-Site Scripting）又称跨站脚本，XSS的重点不在于跨站点，而是在于脚本的执行。XSS是一种经常出现在 Web 应用程序中的计算机安全漏洞，是由于 Web
+                应用程序对用户的输入过滤不足而产生的。</p>
+        </div>
+        <!-- <div class="yskeleton-cover">
+            <div class="yskeleton-card">
+            </div>
+            <div class="yskeleton-line-wrap">
+                <div class="yskeleton-line small"></div>
+                <div class="yskeleton-line small"></div>
+            </div>
+        </div> -->
+    </div>
+
+    <div class="yskeleton user-card" row="5">
+        <div class="content">
+            <img class="ylazy" data-src="https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1547205706476&di=f4bb1df5beb7e5133e5ce6e0e180d632&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F0a52dca458e82eb53802aaca2752d7b7e97289af.jpg">
+        </div>
+        <!-- <div class="yskeleton-cover">
+            <div class="yskeleton-user">
+            </div>
+            <div class="yskeleton-line-wrap">
+                <div class="yskeleton-line small"></div>
+                <div class="yskeleton-line small"></div>
+            </div>
+        </div> -->
+    </div>
+
+    <script>
+        var yskeletons = document.querySelectorAll('.yskeleton');
+
+
+
+        yskeletons.forEach(function (item) {
+
+            /*  type
+                0:段落模式
+                1:用户卡片
+                2.普通卡片
+                3.用户段落
+            */
+            var type = 0;
+            // item.setAttribute('style', 'position:relative');
+
+
+            var elCover = document.createElement('div');
+            elCover.setAttribute('class', 'yskeleton-cover');
+
+
+
+            // 行数
+            var elLineWrap = document.createElement('div');
+            elLineWrap.setAttribute('class', 'yskeleton-line-wrap')
+            var row = 0;
+            var lineHtml = ''
+
+            var className = item.getAttribute('class');
+            console.log(className.indexOf('user-card'))
+            if (className.indexOf('user-card') > 0) {
+                console.log('执行了')
+                type = 1;
+                elCover.innerHTML = ('<div class="yskeleton-user"></div>')
+                lineHtml = '<div class="yskeleton-line small"></div> <div class="yskeleton-line small"></div>'
+
+            } else if (className.indexOf('card') > 0) {
+                type = 2
+                elCover.innerHTML = ('<div class="yskeleton-card"></div>')
+                lineHtml = '<div class="yskeleton-line small"></div> <div class="yskeleton-line small"></div>'
+
+            } else if (className.indexOf('user') > 0) {
+                type = 3
+                elCover.innerHTML = ('<div class="yskeleton-user"></div>')
+                lineHtml = '<div class="yskeleton-line user"></div>'
+                row = Number(item.getAttribute('row')) || 0;
+            } else {
+                row = Number(item.getAttribute('row')) || 0;
+            }
+
+
+            for (var i = 0; i < row; i++) {
+                lineHtml += '<div class="yskeleton-line"></div>'
+            }
+
+            elLineWrap.innerHTML = lineHtml;
+
+            elCover.appendChild(elLineWrap);
+            item.appendChild(elCover)
+        })
+    </script>
+    <script>
+        // 获取所有的图片标签
+        const imgs = document.querySelectorAll('img.ylazy');
+        console.log(imgs)
+        // 获取可视区域的高度
+        const viewHeight = window.innerHeight || document.documentElement.clientHeight
+        // num用于统计当前显示到了哪一张图片，避免每次都从第一张图片开始检查是否露出
+        let num = 0
+
+        function lazyload() {
+            // console.log(imgs)
+            for (let i = num; i < imgs.length; i++) {
+                // 用可视区域高度减去元素顶部距离可视区域顶部的高度
+                let distance = viewHeight - imgs[i].getBoundingClientRect().top
+                // 如果可视区域高度大于等于元素顶部距离可视区域顶部的高度，说明元素露出
+                if (distance >= 0) {
+                    //给元素写入真实的src，展示图片
+                    imgs[i].src = imgs[i].getAttribute('data-src');
+                    imgs[i].setAttribute('class', 'ylazy loaded')
+                    //前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
+                    imgs[i].onload = (function (t) {
+                        console.log(t)
+                    })(i)
+                    num = i + 1
+                }
+            }
+        };
+        // 监听Scroll事件
+        window.addEventListener('scroll', lazyload, false);
+    </script>
+
+    <script>
+        setTimeout(function () {
+            var arr = document.querySelectorAll('.yskeleton')
+            arr.forEach(element => {
+                var cls = element.getAttribute('class')
+                element.setAttribute('class', cls + ' loaded');
+            });
+        }, 3000)
+    </script>
+</body>
+
+</html>
