@@ -3,34 +3,22 @@ export default function () {
     var imgs = document.querySelectorAll('img.ylazy');
 
     function findSkeleton(node) {
-
-      
-        // if (node.tagName ) {
-        //     return false
-        // }
-
-
-        // if (cls.indexOf('yskeleton') > 0) {
-        //     return node
-        // }
-        // console.log(node,node.tagName)
-
         if (node.tagName==='BODY') {
             return false
         } else {
             var cls = node.getAttribute('class');
-            if (cls&&cls.indexOf('yskeleton') > 0) {
+            console.log(cls,cls.indexOf('yskeleton')>=0,cls.indexOf('yskeleton'))
+            if (cls.indexOf('yskeleton') >= 0) {
                 return node
             }
             return findSkeleton(node.parentNode);
         }
-        // console.log(node.tagName,cls)
-
     }
 
     imgs.forEach(function (img) {
        var b= findSkeleton(img)
-       console.log(b)
+       img.skeleton=b?b:null
+       
     })
     // 获取可视区域的高度
     const viewHeight = window.innerHeight || document.documentElement.clientHeight
@@ -50,7 +38,11 @@ export default function () {
                 imgs[i].setAttribute('class', 'ylazy loaded')
                 //前i张图片已经加载完毕，下次从第i+1张开始检查是否露出
                 imgs[i].onload = (function (t) {
-                    console.log(t)
+                    console.log(imgs[t]);
+                    if(imgs[t].skeleton){
+                        var cls=imgs[t].skeleton.getAttribute('class')
+                        imgs[t].skeleton.setAttribute('class',cls+' loaded')
+                    }
                 })(i);
                 num = i + 1
             }
