@@ -10,13 +10,10 @@ export default function () {
             3.用户段落
         */
         var type = 0;
-        // item.setAttribute('style', 'position:relative');
 
 
         var elCover = document.createElement('div');
         elCover.setAttribute('class', 'yskeleton-cover');
-
-
 
         // 行数
         var elLineWrap = document.createElement('div');
@@ -25,9 +22,9 @@ export default function () {
         var lineHtml = ''
 
         var className = item.getAttribute('class');
-        console.log(className.indexOf('user-card'))
+
         if (className.indexOf('user-card') > 0) {
-            console.log('执行了')
+
             type = 1;
             elCover.innerHTML = ('<div class="yskeleton-user"></div>')
             lineHtml = '<div class="yskeleton-line small"></div> <div class="yskeleton-line small"></div>'

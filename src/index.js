@@ -4,8 +4,9 @@ import lazyLoad from './lazyload'
 import skeleton from './skeleton'
 
 window.addEventListener('load', function () {
-    lazyLoad();
     skeleton();
+    lazyLoad();
+   
 })
 
 var lazySkeleton;
